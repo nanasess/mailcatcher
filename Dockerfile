@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/windows/servercore:1709
+FROM mcr.microsoft.com/windows/servercore
 
 RUN powershell -Command \
 	$ErrorActionPreference = 'Stop'; \
