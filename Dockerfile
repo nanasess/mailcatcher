@@ -12,7 +12,7 @@ RUN powershell -Command \
     iex ((new-object net.webclient).DownloadString('https://chocolatey.org/install.ps1')); \
     choco feature disable --name showDownloadProgress
 
-RUN choco install msys2
+RUN choco install -y msys2
 
 RUN C:\Ruby26-x64\bin\gem install mailcatcher -v 0.6.5
 RUN ls C:\Ruby26-x64\bin
