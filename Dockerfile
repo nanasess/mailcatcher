@@ -6,7 +6,7 @@ RUN powershell -Command \
 	Start-Process c:\rubyinstaller-2.6.1-1-x64.exe -ArgumentList '/verysilent' -Wait ; \
 	Remove-Item c:\rubyinstaller-2.6.1-1-x64.exe -Force
 
-RUN C:\Ruby26-x64\bin\gem install mailcatcher -v 0.6.5 --no-ri --no-rdoc
+RUN C:\Ruby26-x64\bin\gem install mailcatcher -v 0.6.5
 RUN ls C:\Ruby26-x64\bin
 # smtp port
 EXPOSE 1025
