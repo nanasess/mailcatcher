@@ -8,22 +8,28 @@ RUN powershell -Command \
 
 RUN powershell -Command \
 	$ErrorActionPreference = 'Stop'; \
-	Invoke-WebRequest -Method Get -Uri https://www.sqlite.org/2019/sqlite-amalgamation-3270200.zip -OutFile c:\sqlite-amalgamation-3270200.zip ; \
-        Expand-Archive -Path C:\sqlite-amalgamation-3270200.zip -DestinationPath \ -Force ; \
-        Remove-Item C:\sqlite-amalgamation-3270200.zip -Force
+	Invoke-WebRequest -Method Get -Uri https://www.sqlite.org/2018/sqlite-amalgamation-3240000.zip -OutFile c:\sqlite-amalgamation-3240000.zip ; \
+        Expand-Archive -Path C:\sqlite-amalgamation-3240000.zip -DestinationPath \ -Force ; \
+        Remove-Item C:\sqlite-amalgamation-3240000.zip -Force
 
-RUN set PATH=%PATH%;C:\Ruby25-x64\bin;C:\Ruby25-x64\msys64\usr\bin;C:\tools\msys64\bin;C:\tools\msys64\usr\bin;C:\sqlite-amalgamation-3270200
+RUN powershell -Command \
+	$ErrorActionPreference = 'Stop'; \
+	Invoke-WebRequest -Method Get -Uri https://www.sqlite.org/2018/sqlite-dll-win32-x86-3240000.zip -OutFile c:\sqlite-dll-win32-x86-3240000.zip ; \
+        Expand-Archive -Path C:\sqlite-dll-win32-x86-3240000.zip -DestinationPath \ -Force ; \
+        Remove-Item C:\sqlite-dll-win32-x86-3240000.zip -Force
+RUN cp C:\sqlite3.dll C:\Ruby25-x64\bin
 
-RUN pacman -r C:\Ruby25-x64\msys64 -S --noconfirm libsqlite-devel gmp-devel libcrypt-devel mingw-w64-x86_64-sqlite3
+RUN set PATH=%PATH%;C:\Ruby25-x64\bin;C:\Ruby25-x64\msys64\usr\bin
 
-RUN gem install sqlite3 --platform=ruby -- --with-sqlite3-include=C:\sqlite-amalgamation-3270200 --with-sqlite3-lib=C:\sqlite-amalgamation-3270200
-#RUN gem specific_install -l https://github.com/larskanis/sqlite3-ruby -b add-gemspec 
+RUN gem install sqlite3 -v "=1.3.13" --platform=ruby -- --with-sqlite3-include=C:\sqlite-amalgamation-3240000 --with-sqlite3-lib=C:\Ruby25-x64\bin
+#RUN gem specific_install -l https://github.com/larskanis/sqlite3-ruby -b add-gemspec
+
 RUN gem install mailcatcher -v 0.6.5
-RUN ls C:\Ruby26-x64\bin
+
 # smtp port
 EXPOSE 1025
 
 # webserver port
 EXPOSE 1080
 
-CMD ["C:\Ruby26-x64\bin\mailcatcher", "--ip=0.0.0.0"]
+CMD ["C:\Ruby25-x64\bin\mailcatcher", "--ip=0.0.0.0"]
