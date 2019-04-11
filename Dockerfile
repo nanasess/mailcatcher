@@ -1,6 +1,6 @@
 FROM mcr.microsoft.com/windows/servercore
 
-RUN powershell -Command [Net.ServicePointManager]::SecurityProtocol = [Net.ServicePointManager]::SecurityProtocol -bor "Tls12";
+RUN powershell -Command [Net.ServicePointManager]::SecurityProtocol = [Net.ServicePointManager]::SecurityProtocol -bor [Net.SecurityProtocolType]::Tls12
 RUN powershell -Command \
 	$ErrorActionPreference = 'Stop'; \
 	Invoke-WebRequest -Method Get -Uri https://github.com/oneclick/rubyinstaller2/releases/download/rubyinstaller-2.5.3-1/rubyinstaller-devkit-2.5.3-1-x64.exe -OutFile c:\rubyinstaller-devkit-2.5.3-1-x64.exe ; \
