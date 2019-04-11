@@ -6,6 +6,14 @@ RUN powershell -Command \
 	Start-Process c:\rubyinstaller-2.6.1-1-x64.exe -ArgumentList '/verysilent' -Wait ; \
 	Remove-Item c:\rubyinstaller-2.6.1-1-x64.exe -Force
 
+ENV chocolateyUseWindowsCompression false
+
+RUN powershell -Command \
+    iex ((new-object net.webclient).DownloadString('https://chocolatey.org/install.ps1')); \
+    choco feature disable --name showDownloadProgress
+
+RUN choco install msys2
+
 RUN C:\Ruby26-x64\bin\gem install mailcatcher -v 0.6.5
 RUN ls C:\Ruby26-x64\bin
 # smtp port
