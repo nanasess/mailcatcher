@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/windows/servercore AS installer-env
+FROM mcr.microsoft.com/windows/servercore
 
 RUN powershell -Command \
 	$ErrorActionPreference = 'Stop'; \
@@ -25,7 +25,6 @@ RUN copy /B /Y C:\sqlite3.dll C:\Ruby25-x64\bin
 RUN set PATH=%PATH%;C:\Ruby25-x64\bin;C:\Ruby25-x64\msys64\usr\bin
 
 RUN gem install sqlite3 -v "=1.3.13" --platform=ruby -- --with-sqlite3-include=C:\sqlite-amalgamation-3240000 --with-sqlite3-lib=C:\Ruby25-x64\bin
-#RUN gem specific_install -l https://github.com/larskanis/sqlite3-ruby -b add-gemspec
 
 RUN gem install mailcatcher -v 0.6.5
 
