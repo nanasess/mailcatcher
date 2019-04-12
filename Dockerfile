@@ -17,9 +17,9 @@ RUN powershell -Command \
 RUN powershell -Command \
 	$ErrorActionPreference = 'Stop'; \
 	[Net.ServicePointManager]::SecurityProtocol = [Net.ServicePointManager]::SecurityProtocol -bor [Net.SecurityProtocolType]::Tls12; \
-	Invoke-WebRequest -Method Get -Uri https://www.sqlite.org/2018/sqlite-dll-win32-x86-3240000.zip -OutFile c:\sqlite-dll-win32-x86-3240000.zip ; \
-	Expand-Archive -Path C:\sqlite-dll-win32-x86-3240000.zip -DestinationPath \ -Force ; \
-	Remove-Item C:\sqlite-dll-win32-x86-3240000.zip -Force
+	Invoke-WebRequest -Method Get -Uri https://www.sqlite.org/2018/sqlite-dll-win64-x64-3240000.zip -OutFile c:\sqlite-dll-win64-x64-3240000.zip ; \
+	Expand-Archive -Path C:\sqlite-dll-win64-x64-3240000.zip -DestinationPath \ -Force ; \
+	Remove-Item C:\sqlite-dll-win64-x64-3240000.zip -Force
 RUN copy /B /Y C:\sqlite3.dll C:\Ruby25-x64\bin
 
 RUN set PATH=%PATH%;C:\Ruby25-x64\bin;C:\Ruby25-x64\msys64\usr\bin
