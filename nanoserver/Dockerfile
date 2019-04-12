@@ -1,5 +1,4 @@
 FROM nanasess/mailcatcher:windowsservercore AS installer-env
-RUN dir C:\
 FROM mcr.microsoft.com/windows/nanoserver
 
 WORKDIR ["C:\\"]
