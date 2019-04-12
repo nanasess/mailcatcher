@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/windows/servercore
+FROM mcr.microsoft.com/windows/servercore AS installer-env
 
 RUN powershell -Command \
 	$ErrorActionPreference = 'Stop'; \
@@ -30,7 +30,10 @@ RUN gem install sqlite3 -v "=1.3.13" --platform=ruby -- --with-sqlite3-include=C
 RUN gem install mailcatcher -v 0.6.5
 
 RUN powershell -Command Remove-Item C:\Ruby25-x64\msys64 -Recurse -Force
-RUN powershell -Command Remove-Item C:\sqlite* -Recurse -Force
+
+FROM mcr.microsoft.com/windows/nanoserver
+
+COPY --from=installer-env ["C:\Ruby25-x64", "C:\Ruby25-x64"]
 
 # smtp port
 EXPOSE 1025
