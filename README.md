@@ -1,9 +1,9 @@
-mailcatcher on windows/nanoserver
+Mailcatcher on Windows Container
 ------------
 
 Usage
 
 ```
-docker run -d -p 1080:1080 --name mailcatcher schickling/mailcatcher:windowsnanoserver
+docker run -d -p 1080:1080 -p 1025:1025 --name mailcatcher schickling/mailcatcher:nanoserver
 ```
 
