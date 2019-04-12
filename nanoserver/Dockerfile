@@ -11,4 +11,4 @@ EXPOSE 1025
 # webserver port
 EXPOSE 1080
 
-CMD ["C:\\Ruby25-x64\\bin\\mailcatcher", "--ip=0.0.0.0"]
+CMD ["C:\Ruby25-x64\bin\mailcatcher", "--ip=0.0.0.0"]
