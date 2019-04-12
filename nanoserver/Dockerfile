@@ -1,8 +1,7 @@
 FROM nanasess/mailcatcher:windowsservercore AS installer-env
 FROM mcr.microsoft.com/windows/nanoserver
 
-WORKDIR ["C:\\"]
-COPY --from=installer-env ["C:\\Ruby25-x64", "."]
+COPY --from=installer-env ["C:/Ruby25-x64", "C:/Ruby25-x64"]
 
 RUN rd /s /q C:\Ruby25-x64\msys64
 
