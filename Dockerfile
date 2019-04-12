@@ -29,6 +29,9 @@ RUN gem install sqlite3 -v "=1.3.13" --platform=ruby -- --with-sqlite3-include=C
 
 RUN gem install mailcatcher -v 0.6.5
 
+RUN powershell -Command Remove-Item C:\Ruby25-x64\msys64 -Recurse -Force
+RUN powershell -Command Remove-Item C:\sqlite* -Recurse -Force
+
 # smtp port
 EXPOSE 1025
 
