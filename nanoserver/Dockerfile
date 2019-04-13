@@ -10,6 +10,10 @@ FROM mcr.microsoft.com/windows/nanoserver
 
 COPY --from=installer-env ["C:/Ruby25-x64", "C:/Ruby25-x64"]
 
+RUN ["C:/Ruby25-x64/bin/ruby.exe --version"]
+
+RUN ["C:/Ruby25-x64/bin/mailcatcher.bat --help"]
+
 # smtp port
 EXPOSE 1025
 
