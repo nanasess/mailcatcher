@@ -35,7 +35,7 @@ ENV BUNDLER_VERSION 1.15.4
 COPY --from=core C:\\Ruby_${RUBY_VERSION}_x64 C:\\Ruby_${RUBY_VERSION}_x64
 COPY --from=core C:\\DevKit C:\\DevKit
 COPY --from=core C:\\sqlite-amalgamation-3240000 C:\\sqlite-amalgamation-3240000
-COPY --from=core C:\\sqlite3.dll C:\Ruby_%RUBY_VERSION%_x64\bin\sqlite3.dll
+COPY --from=core C:\\sqlite3.dll C:\\Ruby_${RUBY_VERSION}_x64\\bin\\sqlite3.dll
 
 RUN setx PATH %PATH%;C:\DevKit\bin;C:\Ruby_%RUBY_VERSION%_x64\bin -m
 RUN ruby C:\\DevKit\\dk.rb init
