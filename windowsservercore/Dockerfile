@@ -22,14 +22,9 @@ RUN powershell -Command \
 	Remove-Item C:\sqlite-dll-win64-x64-3240000.zip -Force
 RUN copy /B /Y C:\sqlite3.dll C:\Ruby25-x64\bin
 
-RUN gem install sqlite3 -v "=1.3.13" --platform=ruby -- --with-sqlite3-include=C:\sqlite-amalgamation-3240000 --with-sqlite3-lib=C:\Ruby25-x64\bin
+RUN gem install -N sqlite3 -v "=1.3.13" --platform=ruby -- --with-sqlite3-include=C:\sqlite-amalgamation-3240000 --with-sqlite3-lib=C:\Ruby25-x64\bin
 
-RUN gem install mailcatcher -v 0.6.5
-
-RUN powershell -Command \
-	$ErrorActionPreference = 'Stop'; \
-	[Net.ServicePointManager]::SecurityProtocol = [Net.ServicePointManager]::SecurityProtocol -bor [Net.SecurityProtocolType]::Tls12; \
-	Invoke-WebRequest -Method Get -Uri https://github.com/oneclick/rubyinstaller2/releases/download/rubyinstaller-2.5.3-1/rubyinstaller-2.5.3-1-x64.exe -OutFile c:\rubyinstaller-2.5.3-1-x64.exe
+RUN gem install -N mailcatcher -v 0.6.5
 
 # smtp port
 EXPOSE 1025
