@@ -14,8 +14,8 @@ FROM mcr.microsoft.com/windows/nanoserver
 
 COPY --from=installer-env ["C:/Ruby25-x64", "C:/Ruby25-x64"]
 
-RUN ["C:/Ruby25-x64/bin/ruby.exe --version"]
-RUN ["C:/Ruby25-x64/bin/mailcatcher.bat --help"]
+#RUN ["C:/Ruby25-x64/bin/ruby.exe --version"]
+#RUN ["C:/Ruby25-x64/bin/mailcatcher.bat --help"]
 
 COPY --from=installer-env ["C:/rubyinstaller-2.5.3-1-x64.exe", "C:/rubyinstaller-2.5.3-1-x64.exe"]
 
