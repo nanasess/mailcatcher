@@ -50,7 +50,7 @@ RUN rmdir C:\\tmp /s /q
 RUN update_rubygems --no-ri --no-rdoc
 RUN gem install bundler --version %BUNDLER_VERSION% --no-ri --no-rdoc
 
-RUN gem install sqlite3 --no-ri --no-rdoc --platform=ruby -- --with-sqlite3-include=C:\sqlite-amalgamation-3240000 --with-sqlite3-lib=C:\Ruby_%RUBY_VERSION%_x64\bin
+#RUN gem install sqlite3 --no-ri --no-rdoc -v "=1.3.13" --platform=ruby -- --with-sqlite3-include=C:\sqlite-amalgamation-3240000 --with-sqlite3-lib=C:\Ruby_%RUBY_VERSION%_x64\bin
 
 RUN gem install mailcatcher -v 0.6.5 --no-ri --no-rdoc
 
