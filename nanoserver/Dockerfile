@@ -12,7 +12,7 @@ RUN powershell -Command \
 
 FROM mcr.microsoft.com/windows/nanoserver
 
-COPY --from=installer-env ["C:/Ruby25-x64", "C:/Ruby25-x64"]
+#COPY --from=installer-env ["C:/Ruby25-x64", "C:/Ruby25-x64"]
 
 #RUN ["C:/Ruby25-x64/bin/ruby.exe --version"]
 #RUN ["C:/Ruby25-x64/bin/mailcatcher.bat --help"]
@@ -24,7 +24,7 @@ RUN powershell -Command \
 	Remove-Item c:\rubyinstaller-2.5.3-1-x64.exe -Force
 
 RUN ["C:/Ruby25-x64/bin/ruby.exe --version"]
-RUN ["C:/Ruby25-x64/bin/mailcatcher.bat --help"]
+#RUN ["C:/Ruby25-x64/bin/mailcatcher.bat --help"]
 
 # smtp port
 EXPOSE 1025
