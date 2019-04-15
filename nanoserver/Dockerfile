@@ -22,7 +22,7 @@ RUN powershell -Command \
 RUN powershell -Command \
 	$ErrorActionPreference = 'Stop'; \
 	[Net.ServicePointManager]::SecurityProtocol = [Net.ServicePointManager]::SecurityProtocol -bor [Net.SecurityProtocolType]::Tls12; \
-	Invoke-WebRequest -Method Get -Uri https://github.com/oneclick/rubyinstaller2/releases/download/rubyinstaller-2.6.1-1/rubyinstaller-2.6.1-1-x64.exe -OutFile c:\rubyinstaller-2.6.1-1-x64.exe ; \
+	Invoke-WebRequest -Method Get -Uri https://github.com/oneclick/rubyinstaller2/releases/download/RubyInstaller-2.6.1-1/rubyinstaller-2.6.1-1-x64.exe -OutFile c:\rubyinstaller-2.6.1-1-x64.exe ; \
 	Start-Process c:\rubyinstaller-2.6.1-1-x64.exe -ArgumentList '/verysilent' -Wait ; \
 	Remove-Item c:\rubyinstaller-2.6.1-1-x64.exe -Force
 
