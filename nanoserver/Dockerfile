@@ -12,19 +12,17 @@ RUN C:\\tmp\\rubyinstaller-%RUBY_VERSION%-x64.exe /silent /dir="C:\Ruby_%RUBY_VE
 ADD https://dl.bintray.com/oneclick/rubyinstaller/rubyinstaller-2.3.3-x64.exe C:\\tmp
 RUN C:\\tmp\\rubyinstaller-2.3.3-x64.exe /silent /dir="C:\Ruby_2.3.3_x64" /tasks="assocfiles,modpath"
 
-RUN powershell -Command \
-	$ErrorActionPreference = 'Stop'; \
-	[Net.ServicePointManager]::SecurityProtocol = [Net.ServicePointManager]::SecurityProtocol -bor [Net.SecurityProtocolType]::Tls12; \
-	Invoke-WebRequest -Method Get -Uri https://github.com/oneclick/rubyinstaller2/releases/download/rubyinstaller-2.4.5-1/rubyinstaller-2.4.5-1-x64.exe -OutFile c:\rubyinstaller-2.4.5-1-x64.exe ; \
-	Start-Process c:\rubyinstaller-2.4.5-1-x64.exe -ArgumentList '/verysilent' -Wait ; \
-	Remove-Item c:\rubyinstaller-2.4.5-1-x64.exe -Force
+# RUN powershell -Command \
+# 	$ErrorActionPreference = 'Stop'; \
+# 	[Net.ServicePointManager]::SecurityProtocol = [Net.ServicePointManager]::SecurityProtocol -bor [Net.SecurityProtocolType]::Tls12; \
+# 	Invoke-WebRequest -Method Get -Uri https://github.com/oneclick/rubyinstaller2/releases/download/rubyinstaller-2.4.5-1/rubyinstaller-2.4.5-1-x64.exe -OutFile c:\rubyinstaller-2.4.5-1-x64.exe ; \
+# 	Start-Process c:\rubyinstaller-2.4.5-1-x64.exe -ArgumentList '/verysilent' -Wait ;
 
 RUN powershell -Command \
 	$ErrorActionPreference = 'Stop'; \
 	[Net.ServicePointManager]::SecurityProtocol = [Net.ServicePointManager]::SecurityProtocol -bor [Net.SecurityProtocolType]::Tls12; \
 	Invoke-WebRequest -Method Get -Uri https://github.com/oneclick/rubyinstaller2/releases/download/RubyInstaller-2.6.1-1/rubyinstaller-2.6.1-1-x64.exe -OutFile c:\rubyinstaller-2.6.1-1-x64.exe ; \
-	Start-Process c:\rubyinstaller-2.6.1-1-x64.exe -ArgumentList '/verysilent' -Wait ; \
-	Remove-Item c:\rubyinstaller-2.6.1-1-x64.exe -Force
+	Start-Process c:\rubyinstaller-2.6.1-1-x64.exe -ArgumentList '/verysilent' -Wait ;
 
 
 # ADD https://dl.bintray.com/oneclick/rubyinstaller/DevKit-mingw64-64-${DEVKIT_VERSION}-${DEVKIT_BUILD}-sfx.exe C:\\tmp
