@@ -42,37 +42,38 @@ RUN powershell -Command \
 # 	Expand-Archive -Path C:\sqlite-dll-win64-x64-3240000.zip -DestinationPath \ -Force ; \
 # 	Remove-Item C:\sqlite-dll-win64-x64-3240000.zip -Force
 
-# Final Nano Image
-FROM mcr.microsoft.com/windows/nanoserver AS nano
+# # Final Nano Image
+# FROM mcr.microsoft.com/windows/nanoserver AS nano
 
-ENV RUBY_VERSION 2.2.4
-ENV RUBYGEMS_VERSION 2.6.13
-ENV BUNDLER_VERSION 1.15.4
+# ENV RUBY_VERSION 2.2.4
+# ENV RUBYGEMS_VERSION 2.6.13
+# ENV BUNDLER_VERSION 1.15.4
 
-COPY --from=core C:\\Ruby_${RUBY_VERSION}_x64 C:\\Ruby_${RUBY_VERSION}_x64
-RUN setx PATH %PATH%;C:\Ruby_%RUBY_VERSION%_x64\bin -m
-RUN ["ruby --version"]
+# COPY --from=core C:\\Ruby_${RUBY_VERSION}_x64 C:\\Ruby_${RUBY_VERSION}_x64
+# RUN setx PATH %PATH%;C:\Ruby_%RUBY_VERSION%_x64\bin -m
+# RUN ["ruby --version"]
 
-# Final Nano Image
-FROM mcr.microsoft.com/windows/nanoserver AS nano2
+# # Final Nano Image
+# FROM mcr.microsoft.com/windows/nanoserver AS nano2
 
-ENV RUBY_VERSION 2.3.3
-ENV RUBYGEMS_VERSION 2.6.13
-ENV BUNDLER_VERSION 1.15.4
+# ENV RUBY_VERSION 2.3.3
+# ENV RUBYGEMS_VERSION 2.6.13
+# ENV BUNDLER_VERSION 1.15.4
 
-COPY --from=core C:\\Ruby_${RUBY_VERSION}_x64 C:\\Ruby_${RUBY_VERSION}_x64
-RUN setx PATH %PATH%;C:\Ruby_%RUBY_VERSION%_x64\bin -m
-RUN ["ruby --version"]
+# COPY --from=core C:\\Ruby_${RUBY_VERSION}_x64 C:\\Ruby_${RUBY_VERSION}_x64
+# RUN setx PATH %PATH%;C:\Ruby_%RUBY_VERSION%_x64\bin -m
+# RUN ["ruby --version"]
 
-FROM mcr.microsoft.com/windows/nanoserver AS nano3
+# # FROM mcr.microsoft.com/windows/nanoserver AS nano3
 
-COPY --from=core C:\\Ruby24-x64 C:\\Ruby24-x64
-RUN setx PATH %PATH%;C:\Ruby24-x64\bin -m
-RUN ["ruby --version"]
+# # COPY --from=core C:\\Ruby24-x64 C:\\Ruby24-x64
+# # RUN setx PATH %PATH%;C:\Ruby24-x64\bin -m
+# # RUN ["ruby --version"]
 
 FROM mcr.microsoft.com/windows/nanoserver AS nano4
 
-COPY --from=core C:\\Ruby26-x64 C:\\Ruby26-x64
+COPY --from=core C:\\rubyinstaller-2.6.1-1-x64.exe C:\\rubyinstaller-2.6.1-1-x64.exe
+RUN C:\\rubyinstaller-2.6.1-1-x64.exe /silent /dir="C:\Ruby26-x64" /tasks="assocfiles,modpath"
 RUN setx PATH %PATH%;C:\Ruby26-x64\bin -m
 RUN ["ruby --version"]
 
