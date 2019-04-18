@@ -22,11 +22,9 @@ RUN powershell -Command \
 	Remove-Item C:\sqlite-dll-win64-x64-3240000.zip -Force
 RUN copy /B /Y C:\sqlite3.dll C:\Ruby25-x64\bin
 
-RUN set PATH=%PATH%;C:\Ruby25-x64\bin;C:\Ruby25-x64\msys64\usr\bin
+RUN gem install -N sqlite3 -v "=1.3.13" --platform=ruby -- --with-sqlite3-include=C:\sqlite-amalgamation-3240000 --with-sqlite3-lib=C:\Ruby25-x64\bin
 
-RUN gem install sqlite3 -v "=1.3.13" --platform=ruby -- --with-sqlite3-include=C:\sqlite-amalgamation-3240000 --with-sqlite3-lib=C:\Ruby25-x64\bin
-
-RUN gem install mailcatcher -v 0.6.5
+RUN gem install -N mailcatcher -v 0.6.5
 
 # smtp port
 EXPOSE 1025
@@ -34,4 +32,4 @@ EXPOSE 1025
 # webserver port
 EXPOSE 1080
 
-CMD ["C:\Ruby25-x64\bin\mailcatcher", "--ip=0.0.0.0"]
+CMD ["C:/Ruby25-x64/bin/mailcatcher.bat --ip=0.0.0.0"]
